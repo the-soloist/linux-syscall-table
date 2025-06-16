@@ -22,14 +22,21 @@ echo "[+] Preparing the syscall table file..."
 cp -v $TBL_64 .
 sed -i "s/__x64_//g" syscall_64.tbl
 sed -i "s/__x32_compat_//g" syscall_64.tbl
+
 echo "[+] Done :)"
 rm -rf "/tmp/linux-${KERNEL_VERSION}"
 rm -rf "/tmp/linux-${KERNEL_VERSION}.tar.xz"
+
 echo "[I] Calling gen_syscalls.py..."
 ./gen_syscalls.py > www/syscalls-x86_64.js
 rm -rf tags
 rm -rf syscall_64.tbl
 sed -i "s/\/tmp\/linux-${KERNEL_VERSION}\///g" www/syscalls-x86_64.js
 
+echo "[+] Copying files to ../www/64/${KERNEL_VERSION}..."
 mkdir -p ../www/64/
 cp -r ./www ../www/64/${KERNEL_VERSION}
+
+echo "[I] Replacing the kernel version"
+sed -n "s/https:\/\/elixir.bootlin.com\/linux\/v.*\/source/https:\/\/elixir.bootlin.com\/linux\/v${KERNEL_VERSION}\/source/p" ../www/64/${KERNEL_VERSION}/index.html
+sed -i "s/https:\/\/elixir.bootlin.com\/linux\/v.*\/source/https:\/\/elixir.bootlin.com\/linux\/v${KERNEL_VERSION}\/source/g" ../www/64/${KERNEL_VERSION}/index.html

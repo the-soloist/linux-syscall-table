@@ -30,5 +30,10 @@ rm -rf tags
 rm -rf syscall_32.tbl
 sed -i "s/\/tmp\/linux-${KERNEL_VERSION}\///g" www/syscalls-x86.js
 
+echo "[+] Copying files to ../www/32/${KERNEL_VERSION}..."
 mkdir -p ../www/32/
 cp -r ./www ../www/32/${KERNEL_VERSION}
+
+echo "[I] Replacing the kernel version"
+sed -n "s/https:\/\/elixir.bootlin.com\/linux\/v.*\/source/https:\/\/elixir.bootlin.com\/linux\/v${KERNEL_VERSION}\/source/p" ../www/32/${KERNEL_VERSION}/index.html
+sed -i "s/https:\/\/elixir.bootlin.com\/linux\/v.*\/source/https:\/\/elixir.bootlin.com\/linux\/v${KERNEL_VERSION}\/source/g" ../www/32/${KERNEL_VERSION}/index.html
