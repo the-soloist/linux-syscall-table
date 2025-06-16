@@ -1,18 +1,18 @@
 #!/bin/bash
 
-KERNEL_VERSION="6.6"
+KERNEL_VERSION="6.1.3"
 LINK="https://www.kernel.org/pub/linux/kernel/v6.x/linux-${KERNEL_VERSION}.tar.xz"
 
 TBL_64="/tmp/linux-${KERNEL_VERSION}/arch/x86/entry/syscalls/syscall_64.tbl"
 
-if [ ! -d ${DIR}/linux-${KERNEL_VERSION} ];then
+if [ ! -d ${DIR}/linux-${KERNEL_VERSION} ]; then
     curl -L $LINK > /tmp/linux-${KERNEL_VERSION}.tar.xz
     tar xf /tmp/linux-${KERNEL_VERSION}.tar.xz -C /tmp/
 fi
 
-if [ ! -f ${TBL_64} ];then
-	echo "File syscall_64.tbl doesn't exist"
-	exit -1
+if [ ! -f ${TBL_64} ]; then
+    echo "File syscall_64.tbl doesn't exist"
+    exit -1
 fi
 
 echo "[+] Generating tags, this may take a while..."
@@ -33,10 +33,10 @@ rm -rf tags
 rm -rf syscall_64.tbl
 sed -i "s/\/tmp\/linux-${KERNEL_VERSION}\///g" www/syscalls-x86_64.js
 
-echo "[+] Copying files to ../www/64/${KERNEL_VERSION}..."
-mkdir -p ../www/64/
-cp -r ./www ../www/64/${KERNEL_VERSION}
+echo "[+] Copying files to ../docs/64/${KERNEL_VERSION}..."
+mkdir -p ../docs/64/
+cp -r ./www ../docs/64/${KERNEL_VERSION}
 
 echo "[I] Replacing the kernel version"
-sed -n "s/https:\/\/elixir.bootlin.com\/linux\/v.*\/source/https:\/\/elixir.bootlin.com\/linux\/v${KERNEL_VERSION}\/source/p" ../www/64/${KERNEL_VERSION}/index.html
-sed -i "s/https:\/\/elixir.bootlin.com\/linux\/v.*\/source/https:\/\/elixir.bootlin.com\/linux\/v${KERNEL_VERSION}\/source/g" ../www/64/${KERNEL_VERSION}/index.html
+sed -n "s/https:\/\/elixir.bootlin.com\/linux\/v.*\/source/https:\/\/elixir.bootlin.com\/linux\/v${KERNEL_VERSION}\/source/p" ../docs/64/${KERNEL_VERSION}/index.html
+sed -i "s/https:\/\/elixir.bootlin.com\/linux\/v.*\/source/https:\/\/elixir.bootlin.com\/linux\/v${KERNEL_VERSION}\/source/g" ../docs/64/${KERNEL_VERSION}/index.html
