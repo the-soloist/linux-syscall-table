@@ -1,9 +1,5 @@
 # Linux Syscall Table
 
-## Syscall Table
-
-- []
-
 ## Install
 
 ```bash

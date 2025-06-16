@@ -1,5 +1,3 @@
-# Linux Syscall Table
-
 ## 32 bit
 
 - [kernel 4.14](./32/4.14/)
