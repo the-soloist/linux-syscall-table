@@ -31,4 +31,4 @@ rm -rf syscall_32.tbl
 sed -i "s/\/tmp\/linux-${KERNEL_VERSION}\///g" www/syscalls-x86.js
 
 mkdir -p ../www/32/
-mv ./www ../www/32/${KERNEL_VERSION}
+cp -r ./www ../www/32/${KERNEL_VERSION}
