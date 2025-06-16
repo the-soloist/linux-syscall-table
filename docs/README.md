@@ -1,0 +1,9 @@
+# Linux Syscall Table
+
+## 32 bit
+
+- [kernel 4.14](./32/4.14/)
+
+## 64 bit
+
+- [kernel 6.6](./64/6.6/)
