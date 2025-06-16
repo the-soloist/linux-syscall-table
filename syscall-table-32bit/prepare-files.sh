@@ -30,5 +30,5 @@ rm -rf tags
 rm -rf syscall_32.tbl
 sed -i "s/\/tmp\/linux-${KERNEL_VERSION}\///g" www/syscalls-x86.js
 
-mdkir -p ../www/32/
+mkdir -p ../www/32/
 mv ./www ../www/32/${KERNEL_VERSION}
