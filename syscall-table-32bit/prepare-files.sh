@@ -1,7 +1,7 @@
 #!/bin/bash
 
 KERNEL_VERSION="4.14"
-LINK="https://www.kernel.org/pub/linux/kernel/v4.x/linux-${KERNEL_VERSION}.tar.xz"
+LINK="https://mirrors.tuna.tsinghua.edu.cn/kernel/v4.x/linux-${KERNEL_VERSION}.tar.xz"
 
 TBL_32="/tmp/linux-${KERNEL_VERSION}/arch/x86/entry/syscalls/syscall_32.tbl"
 
@@ -33,8 +33,8 @@ rm -rf syscall_32.tbl
 sed -i "s/\/tmp\/linux-${KERNEL_VERSION}\///g" www/syscalls-x86.js
 
 echo "[+] Copying files to ../docs/32/${KERNEL_VERSION}..."
-mkdir -p ../docs/32/
-cp -r ./www ../docs/32/${KERNEL_VERSION}
+mkdir -p ../docs/32/${KERNEL_VERSION}
+cp -r ./www/* ../docs/32/${KERNEL_VERSION}
 
 echo "[I] Replacing the kernel version"
 sed -n "s/https:\/\/elixir.bootlin.com\/linux\/v4.14\/source/https:\/\/elixir.bootlin.com\/linux\/v${KERNEL_VERSION}\/source/p" ../docs/32/${KERNEL_VERSION}/index.html

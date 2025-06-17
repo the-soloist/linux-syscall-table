@@ -1,7 +1,7 @@
 #!/bin/bash
 
 KERNEL_VERSION="6.6"
-LINK="https://www.kernel.org/pub/linux/kernel/v6.x/linux-${KERNEL_VERSION}.tar.xz"
+LINK="https://mirrors.tuna.tsinghua.edu.cn/kernel/v6.x/linux-${KERNEL_VERSION}.tar.xz"
 
 TBL_64="/tmp/linux-${KERNEL_VERSION}/arch/x86/entry/syscalls/syscall_64.tbl"
 
@@ -34,8 +34,8 @@ rm -rf syscall_64.tbl
 sed -i "s/\/tmp\/linux-${KERNEL_VERSION}\///g" www/syscalls-x86_64.js
 
 echo "[+] Copying files to ../docs/64/${KERNEL_VERSION}..."
-mkdir -p ../docs/64/
-cp -r ./www ../docs/64/${KERNEL_VERSION}
+mkdir -p ../docs/64/${KERNEL_VERSION}
+cp -r ./www/* ../docs/64/${KERNEL_VERSION}
 
 echo "[I] Replacing the kernel version"
 sed -n "s/https:\/\/elixir.bootlin.com\/linux\/v6.6\/source/https:\/\/elixir.bootlin.com\/linux\/v${KERNEL_VERSION}\/source/p" ../docs/64/${KERNEL_VERSION}/index.html
