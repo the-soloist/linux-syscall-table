@@ -37,5 +37,8 @@ mkdir -p ../docs/32/
 cp -r ./www ../docs/32/${KERNEL_VERSION}
 
 echo "[I] Replacing the kernel version"
-sed -n "s/https:\/\/elixir.bootlin.com\/linux\/v.*\/source/https:\/\/elixir.bootlin.com\/linux\/v${KERNEL_VERSION}\/source/p" ../docs/32/${KERNEL_VERSION}/index.html
-sed -i "s/https:\/\/elixir.bootlin.com\/linux\/v.*\/source/https:\/\/elixir.bootlin.com\/linux\/v${KERNEL_VERSION}\/source/g" ../docs/32/${KERNEL_VERSION}/index.html
+sed -n "s/https:\/\/elixir.bootlin.com\/linux\/v4.14\/source/https:\/\/elixir.bootlin.com\/linux\/v${KERNEL_VERSION}\/source/p" ../docs/32/${KERNEL_VERSION}/index.html
+sed -i "s/https:\/\/elixir.bootlin.com\/linux\/v4.14\/source/https:\/\/elixir.bootlin.com\/linux\/v${KERNEL_VERSION}\/source/g" ../docs/32/${KERNEL_VERSION}/index.html
+
+sed -n "s/Generated from Linux kernel 4.14 using/Generated from Linux kernel ${KERNEL_VERSION} using/p" ../docs/32/${KERNEL_VERSION}/index.html
+sed -i "s/Generated from Linux kernel 4.14 using/Generated from Linux kernel ${KERNEL_VERSION} using/g" ../docs/32/${KERNEL_VERSION}/index.html

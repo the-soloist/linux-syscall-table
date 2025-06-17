@@ -1,6 +1,6 @@
 #!/bin/bash
 
-KERNEL_VERSION="6.1.3"
+KERNEL_VERSION="6.6"
 LINK="https://www.kernel.org/pub/linux/kernel/v6.x/linux-${KERNEL_VERSION}.tar.xz"
 
 TBL_64="/tmp/linux-${KERNEL_VERSION}/arch/x86/entry/syscalls/syscall_64.tbl"
@@ -38,5 +38,8 @@ mkdir -p ../docs/64/
 cp -r ./www ../docs/64/${KERNEL_VERSION}
 
 echo "[I] Replacing the kernel version"
-sed -n "s/https:\/\/elixir.bootlin.com\/linux\/v.*\/source/https:\/\/elixir.bootlin.com\/linux\/v${KERNEL_VERSION}\/source/p" ../docs/64/${KERNEL_VERSION}/index.html
-sed -i "s/https:\/\/elixir.bootlin.com\/linux\/v.*\/source/https:\/\/elixir.bootlin.com\/linux\/v${KERNEL_VERSION}\/source/g" ../docs/64/${KERNEL_VERSION}/index.html
+sed -n "s/https:\/\/elixir.bootlin.com\/linux\/v6.6\/source/https:\/\/elixir.bootlin.com\/linux\/v${KERNEL_VERSION}\/source/p" ../docs/64/${KERNEL_VERSION}/index.html
+sed -i "s/https:\/\/elixir.bootlin.com\/linux\/v6.6\/source/https:\/\/elixir.bootlin.com\/linux\/v${KERNEL_VERSION}\/source/g" ../docs/64/${KERNEL_VERSION}/index.html
+
+sed -n "s/Generated from Linux kernel 6.6 using/Generated from Linux kernel ${KERNEL_VERSION} using/p" ../docs/64/${KERNEL_VERSION}/index.html
+sed -i "s/Generated from Linux kernel 6.6 using/Generated from Linux kernel ${KERNEL_VERSION} using/g" ../docs/64/${KERNEL_VERSION}/index.html
